@@ -1,0 +1,4 @@
+language: cpp
+os: linux
+compiler: gcc
+script: sudo make all
