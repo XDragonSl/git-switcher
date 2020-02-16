@@ -9,7 +9,7 @@ RM =
 ifeq ($(OS),Windows_NT)
 	INSTALL_DIR += $(SystemRoot)
 	CL += rmdir $(BUILD_DIR) /S /Q
-	CP += copy $(BUILD_DIR)\$(OUTPUT).exe $(INSTALL_DIR) && echo alias gsw="gsw.exe" >> $(USERPROFILE)\.bash_profile
+	CP += copy $(BUILD_DIR)\$(OUTPUT).exe $(INSTALL_DIR)
 	RM += del $(INSTALL_DIR)\$(OUTPUT).exe
 else
     UNAME_S := $(shell uname -s)
@@ -32,5 +32,8 @@ clean:
 	$(CL)
 install:
 	$(CP)
+update:
+	make uninstall
+	make all
 uninstall:
 	$(RM)
