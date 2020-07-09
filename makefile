@@ -3,7 +3,7 @@ BUILD_DIR = build
 SOURCE_DIR = src
 EXECUTABLE = gsw
 
-SOURCES = $(addprefix $(SOURCE_DIR)\\*, .cpp \\*.cpp)
+SOURCES = $(addprefix $(SOURCE_DIR)/*, .cpp /*.cpp)
 
 INSTALL_DIR = 
 CL =
@@ -27,7 +27,7 @@ endif
 
 main:
 	mkdir $(BUILD_DIR)
-	$(CC) -o $(BUILD_DIR)\$(EXECUTABLE) $(SOURCES)
+	$(CC) -o $(BUILD_DIR)/$(EXECUTABLE) $(SOURCES)
 
 all:
 	make
