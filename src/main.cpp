@@ -1,4 +1,5 @@
 #include <string>
+#include <cstdlib>
 #include <iostream>
 #include "Options/Options.h"
 #include "help.h"
