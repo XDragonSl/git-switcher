@@ -13,7 +13,7 @@ Global git config cannot keep a few usernames / emails, but sometimes it's neces
 
 ### Technologies
 
-Project is using `C++` language, `C++98` standard.
+Project is using `C++` language, `C++11` standard.
 
 ## System requirements
 
@@ -49,7 +49,11 @@ or open the file (or create it) in a text editor and add the line manually.
 ### App
 
 ```bash
-gsw
+gsw <option>
+Options:
+        -c, --current:  Display current user email
+        -v, --version:  Display installed version
+        -h, --help:     Display help
 ```
 
 ### Make targets
@@ -69,6 +73,6 @@ gsw
 
 If you have any questions please don't hesitate to contact me almdragonsl@gmail.com
 
-## Copiryght
+## Copyright
 
 &copy; 2020 Ermolenko V.A.
