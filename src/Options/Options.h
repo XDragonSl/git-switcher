@@ -1,5 +1,4 @@
-#ifndef OPTIONS_H_
-#define OPTIONS_H_
+#pragma once
 
 #include <string>
 #include <vector>
@@ -14,5 +13,3 @@ class Options {
         const string& get(const string &option);
         bool isExists(const string &option);
 };
-
-#endif

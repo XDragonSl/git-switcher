@@ -1,5 +1,4 @@
-#ifndef PROFILE_H_
-#define PROFILE_H_
+#pragma once
 
 #include <string>
 
@@ -17,5 +16,3 @@ class Profile {
         const string& getEmail();
         const string& toString();
 };
-
-#endif
