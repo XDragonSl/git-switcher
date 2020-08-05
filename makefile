@@ -27,7 +27,7 @@ endif
 
 main:
 	mkdir $(BUILD_DIR)
-	$(CC) -o $(BUILD_DIR)/$(EXECUTABLE) $(SOURCES)
+	$(CC) -std=c++11 -o $(BUILD_DIR)/$(EXECUTABLE) $(SOURCES)
 
 all:
 	make
