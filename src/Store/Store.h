@@ -23,5 +23,6 @@ class Store {
         bool isChanged = false;
     public:
         Store();
+        void append(Profile& profile);
         ~Store();
 };

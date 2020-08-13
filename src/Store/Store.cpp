@@ -20,6 +20,11 @@ Store::Store() {
     store.close();
 }
 
+void Store::append(Profile& profile) {
+    allProfiles.push_back(profile);
+    isChanged = true;
+}
+
 Store::~Store() {
     if (isChanged) {
         store.open(STORE_LOCATION + STORE_NAME, ios::out);
