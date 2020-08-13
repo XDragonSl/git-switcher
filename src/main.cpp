@@ -38,8 +38,8 @@ void version() {
 }
 
 void help() {
-    cout << H_COMMON + "\n";
-    cout << "Options:\n" << H_CURRENT + "\n" << H_VERSION + "\n" << H_HELP + "\n\n";
+    cout << H_COMMON << endl;
+    cout << "Options:\n" << H_CURRENT << endl << H_VERSION << endl << H_HELP << endl << endl;
 }
 
 void current() {
