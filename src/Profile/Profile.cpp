@@ -21,7 +21,7 @@ const string& Profile::getEmail() {
     return email;
 }
 
-const string& Profile::toString() {
-    static const string val(name + ";" + email);
+const string Profile::toString() {
+    const string val(name + Profile::SEPARATOR + email);
     return val;
 }

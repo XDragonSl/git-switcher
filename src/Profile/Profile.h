@@ -14,5 +14,6 @@ class Profile {
         void setEmail(const string& email);
         const string& getName();
         const string& getEmail();
-        const string& toString();
+        const string toString();
+        static const char SEPARATOR = ';';
 };
