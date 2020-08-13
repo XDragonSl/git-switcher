@@ -51,9 +51,10 @@ or open the file (or create it) in a text editor and add the line manually.
 ```bash
 gsw <option>
 Options:
-        -c, --current:  Display current user email
         -v, --version:  Display installed version
         -h, --help:     Display help
+        -c, --current:  Display current user email
+        -a, --add:      Add new user profile
 ```
 
 ### Make targets
