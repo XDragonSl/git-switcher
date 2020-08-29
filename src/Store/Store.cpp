@@ -25,6 +25,14 @@ void Store::append(Profile& profile) {
     isChanged = true;
 }
 
+Profile& Store::get(int id) {
+    return allProfiles[id];
+}
+
+int Store::size() {
+    return allProfiles.size();
+}
+
 Store::~Store() {
     if (isChanged) {
         store.open(STORE_LOCATION + STORE_NAME, ios::out);

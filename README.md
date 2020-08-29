@@ -49,12 +49,14 @@ or open the file (or create it) in a text editor and add the line manually.
 ### App
 
 ```bash
-gsw <option>
 Options:
-        -v, --version:  Display installed version
-        -h, --help:     Display help
-        -c, --current:  Display current user email
-        -a, --add:      Add new user profile
+        -v, --version:                          Display installed version 
+        -h, --help:                             Display help
+        -c, --current:                          Display current user email
+        -a, --add 
+                --name <name> --email <email>:  Add new user profile
+        -s, --switch 
+                <number>:                       Switch user profile
 ```
 
 ### Make targets

@@ -7,7 +7,8 @@ using namespace std;
 const string VERSION(".0");
 
 const string H_COMMON("Git Switcher\nVersion " + VERSION + "\n\ngsw <option>");
-const string H_VERSION("\t-v, --version:\tDisplay installed version");
-const string H_HELP("\t-h, --help:\tDisplay help");
-const string H_CURRENT("\t-c, --current:\tDisplay current user email");
-const string H_ADD("\t-a, --add:\tAdd new user profile");
+const string H_VERSION("\t-v, --version:\t\t\t\tDisplay installed version");
+const string H_HELP("\t-h, --help:\t\t\t\tDisplay help");
+const string H_CURRENT("\t-c, --current:\t\t\t\tDisplay current user email");
+const string H_ADD("\t-a, --add \n\t\t--name <name> --email <email>:\tAdd new user profile");
+const string H_SWAP("\t-s, --switch \n\t\t<number>:\t\t\tSwitch user profile");

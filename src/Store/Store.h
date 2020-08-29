@@ -24,5 +24,7 @@ class Store {
     public:
         Store();
         void append(Profile& profile);
+        Profile& get(int id);
+        int size();
         ~Store();
 };
