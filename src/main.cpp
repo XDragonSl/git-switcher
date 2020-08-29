@@ -1,6 +1,8 @@
 #include <string>
 #include <cstdlib>
 #include <iostream>
+#include <iomanip>
+#include <vector>
 #include "Options/Options.h"
 #include "Profile/Profile.h"
 #include "Store/Store.h"
@@ -17,12 +19,16 @@ const string CURRENT_GIT_CMD("git config --get user.email");
 const string SWAP_NAME_GIT_CMD("git config --global --replace-all user.name ");
 const string SWAP_EMAIL_GIT_CMD("git config --global --replace-all user.email ");
 const string QUOTE("\"");
+const int NUMBER_WIDTH = 4;
+const int NAME_WIDTH = 48;
+const int EMAIL_WIDTH = 48;
 
 void version();
 void help();
 void current();
 void add(const string& name, const string& email);
 void swap(int number);
+void list();
 
 int main(int argc, char **argv) {
     setlocale(LC_ALL, "Russian");
@@ -50,6 +56,8 @@ int main(int argc, char **argv) {
             cout << WRONG_SWITCH_PARAM_MESSAGE << endl;
             cout << RUN_HELP_MESSAGE;
         }
+    } else if (opts.isExists("-l") || opts.isExists("--list")) {
+        list();
     } else {
         cout << WRONG_OPTS_MESSAGE << endl;
         cout << RUN_HELP_MESSAGE;
@@ -58,17 +66,18 @@ int main(int argc, char **argv) {
 }
 
 void version() {
-    cout << VERSION;
+    cout << gsw_info::VERSION;
 }
 
 void help() {
-    cout << H_COMMON << endl;
+    cout << gsw_info::H_COMMON << endl;
     cout << "Options:" << endl;
-    cout << H_VERSION << endl;
-    cout << H_HELP << endl;
-    cout << H_CURRENT << endl;
-    cout << H_ADD << endl;
-    cout << H_SWAP << endl;
+    cout << gsw_info::H_VERSION << endl;
+    cout << gsw_info::H_HELP << endl;
+    cout << gsw_info::H_CURRENT << endl;
+    cout << gsw_info::H_LIST << endl;
+    cout << gsw_info::H_ADD << endl;
+    cout << gsw_info::H_SWAP << endl;
     cout << endl;
 }
 
@@ -99,4 +108,17 @@ void swap(int number) {
     string swapEmail(SWAP_EMAIL_GIT_CMD + QUOTE + chosen.getEmail() + QUOTE);
     system(swapName.c_str());
     system(swapEmail.c_str());
+}
+
+void list() {
+    Store store;
+    int size = store.size();
+    vector<Profile> profileList = store.getAll();
+    for (int i = 0; i < size; i++) {
+        cout << left;
+        cout << setw(NUMBER_WIDTH) << i + 1;
+        cout << setw(NAME_WIDTH) << profileList[i].getName();
+        cout << setw(EMAIL_WIDTH) << profileList[i].getEmail();
+        cout << endl;
+    }
 }

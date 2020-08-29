@@ -29,6 +29,10 @@ Profile& Store::get(int id) {
     return allProfiles[id];
 }
 
+vector<Profile>& Store::getAll() {
+    return allProfiles;
+}
+
 int Store::size() {
     return allProfiles.size();
 }

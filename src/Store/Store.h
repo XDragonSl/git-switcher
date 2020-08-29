@@ -25,6 +25,7 @@ class Store {
         Store();
         void append(Profile& profile);
         Profile& get(int id);
+        vector<Profile>& getAll();
         int size();
         ~Store();
 };
