@@ -18,6 +18,7 @@ void current();
 void add(const string& name, const string& email);
 
 int main(int argc, char **argv) {
+    setlocale(LC_ALL, "Russian");
     Options opts(argc, argv);
     if (opts.isExists("-h") || opts.isExists("--help")) {
         help();
