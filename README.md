@@ -50,14 +50,16 @@ or open the file (or create it) in a text editor and add the line manually.
 
 ```bash
 Options:
-        -v, --version:                          Display installed version
-        -h, --help:                             Display help
-        -c, --current:                          Display current user email
-        -l, --list:                             Display list of all user profiles
-        -a, --add 
-                --name <name> --email <email>:  Add new user profile
-        -s, --switch 
-                <number>:                       Switch user profile
+        -v, --version:                                                  Display installed version
+        -h, --help:                                                     Display help
+        -c, --current:                                                  Display current user email       
+        -l, --list:                                                     Display list of all user profiles
+        -a, --add
+                --name <name> --email <email>:                          Add new user profile
+        -u, --update
+                --number <number> --name <name> --email <email>:        Update existing user profile
+        -s, --switch
+                <number>:                                               Switch user profile
 ```
 
 ### Make targets

@@ -33,6 +33,12 @@ vector<Profile>& Store::getAll() {
     return allProfiles;
 }
 
+void Store::update(int id, Profile& profile) {
+    allProfiles[id].setName(profile.getName());
+    allProfiles[id].setEmail(profile.getEmail());
+    isChanged = true;
+}
+
 int Store::size() {
     return allProfiles.size();
 }

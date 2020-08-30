@@ -12,6 +12,7 @@ using namespace std;
 
 const string RUN_HELP_MESSAGE("Run gsw --help for usage information");
 const string WRONG_OPTS_MESSAGE("Wrong options!");
+const string WRONG_UPDATE_PARAM_MESSAGE("Wrong update parameter!");
 const string WRONG_SWITCH_PARAM_MESSAGE("Wrong switch parameter!");
 const string NONEXISTENT_INDEX_MESSAGE("Wrong profile index!");
 const string EMPTY_NAME_EMAIL_MESSAGE("Name and email shouldn't be empty!");
@@ -27,6 +28,7 @@ void version();
 void help();
 void current();
 void add(const string& name, const string& email);
+void update(int number, const string& name, const string& email);
 void swap(int number);
 void list();
 
@@ -41,6 +43,20 @@ int main(int argc, char **argv) {
         current();
     } else if (opts.isExists("-a") || opts.isExists("--add")) {
         add(opts.get("--name"), opts.get("--email"));
+    } else if (opts.isExists("-u") || opts.isExists("--update")) {
+        try {
+            string number = opts.get("--number");
+            if (!number.empty()) {
+                update(stoi(number), opts.get("--name"), opts.get("--email"));
+            } else {
+                throw invalid_argument(WRONG_UPDATE_PARAM_MESSAGE.c_str());
+            }
+        }
+        catch(const exception& e) {
+            cout << WRONG_UPDATE_PARAM_MESSAGE << endl;
+            cout << RUN_HELP_MESSAGE;
+        }
+        
     } else if (opts.isExists("-s") || opts.isExists("--switch")) {
         string shortParam(opts.get("-s"));
         string longParam(opts.get("--switch"));
@@ -77,12 +93,26 @@ void help() {
     cout << gsw_info::H_CURRENT << endl;
     cout << gsw_info::H_LIST << endl;
     cout << gsw_info::H_ADD << endl;
+    cout << gsw_info::H_UPDATE << endl;
     cout << gsw_info::H_SWAP << endl;
     cout << endl;
 }
 
 void current() {
     system(CURRENT_GIT_CMD.c_str());
+}
+
+void list() {
+    Store store;
+    int size = store.size();
+    vector<Profile> profileList = store.getAll();
+    for (int i = 0; i < size; i++) {
+        cout << left;
+        cout << setw(NUMBER_WIDTH) << i + 1;
+        cout << setw(NAME_WIDTH) << profileList[i].getName();
+        cout << setw(EMAIL_WIDTH) << profileList[i].getEmail();
+        cout << endl;
+    }
 }
 
 void add(const string& name, const string& email) {
@@ -94,6 +124,22 @@ void add(const string& name, const string& email) {
     Profile profile(name, email);
     Store store;
     store.append(profile);
+}
+
+void update(int number, const string& name, const string& email) {
+    if (name.empty() || email.empty()) {
+        cout << EMPTY_NAME_EMAIL_MESSAGE << endl;
+        cout << RUN_HELP_MESSAGE;
+        return;
+    }
+    Store store;
+    if (number <= 0 || number > store.size()) {
+        cout << NONEXISTENT_INDEX_MESSAGE << endl;
+        cout << RUN_HELP_MESSAGE;
+        return;
+    }
+    Profile profile(name, email);
+    store.update(number - 1, profile);
 }
 
 void swap(int number) {
@@ -108,17 +154,4 @@ void swap(int number) {
     string swapEmail(SWAP_EMAIL_GIT_CMD + QUOTE + chosen.getEmail() + QUOTE);
     system(swapName.c_str());
     system(swapEmail.c_str());
-}
-
-void list() {
-    Store store;
-    int size = store.size();
-    vector<Profile> profileList = store.getAll();
-    for (int i = 0; i < size; i++) {
-        cout << left;
-        cout << setw(NUMBER_WIDTH) << i + 1;
-        cout << setw(NAME_WIDTH) << profileList[i].getName();
-        cout << setw(EMAIL_WIDTH) << profileList[i].getEmail();
-        cout << endl;
-    }
 }
