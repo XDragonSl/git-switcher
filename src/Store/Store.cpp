@@ -39,6 +39,11 @@ void Store::update(int id, Profile& profile) {
     isChanged = true;
 }
 
+void Store::remove(int id) {
+    allProfiles.erase(allProfiles.begin() + id);
+    isChanged = true;
+}
+
 int Store::size() {
     return allProfiles.size();
 }

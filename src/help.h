@@ -16,5 +16,6 @@ namespace gsw_info {
     const string H_ADD("\t-a, --add \n\t\t--name <name> --email <email>:\t\t\t\tAdd new user profile");
     const string H_UPDATE("\t-u, --update \n\t\t--number <number> --name <name> --email <email>:\tUpdate existing user profile");
     const string H_SWAP("\t-s, --switch \n\t\t<number>:\t\t\t\t\t\tSwitch user profile");
+    const string H_REMOVE("\t-r, --remove \n\t\t<number>:\t\t\t\t\t\tRemove user profile");
 
 }

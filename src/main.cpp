@@ -14,6 +14,7 @@ const string RUN_HELP_MESSAGE("Run gsw --help for usage information");
 const string WRONG_OPTS_MESSAGE("Wrong options!");
 const string WRONG_UPDATE_PARAM_MESSAGE("Wrong update parameter!");
 const string WRONG_SWITCH_PARAM_MESSAGE("Wrong switch parameter!");
+const string WRONG_REMOVE_PARAM_MESSAGE("Wrong remove parameter!");
 const string NONEXISTENT_INDEX_MESSAGE("Wrong profile index!");
 const string EMPTY_NAME_EMAIL_MESSAGE("Name and email shouldn't be empty!");
 const string CURRENT_GIT_CMD("git config --get user.email");
@@ -30,6 +31,7 @@ void current();
 void add(const string& name, const string& email);
 void update(int number, const string& name, const string& email);
 void swap(int number);
+void remove(int number);
 void list();
 
 int main(int argc, char **argv) {
@@ -72,6 +74,21 @@ int main(int argc, char **argv) {
             cout << WRONG_SWITCH_PARAM_MESSAGE << endl;
             cout << RUN_HELP_MESSAGE;
         }
+    } else if (opts.isExists("-r") || opts.isExists("--remove")) {
+        string shortParam(opts.get("-r"));
+        string longParam(opts.get("--remove"));
+        try {
+            if (!shortParam.empty()) {
+                remove(stoi(shortParam));
+            } else if (!longParam.empty()) {
+                remove(stoi(longParam));
+            } else {
+                throw invalid_argument(WRONG_REMOVE_PARAM_MESSAGE.c_str());
+            }
+        } catch(const exception& e) {
+            cout << WRONG_REMOVE_PARAM_MESSAGE << endl;
+            cout << RUN_HELP_MESSAGE;
+        }
     } else if (opts.isExists("-l") || opts.isExists("--list")) {
         list();
     } else {
@@ -95,6 +112,7 @@ void help() {
     cout << gsw_info::H_ADD << endl;
     cout << gsw_info::H_UPDATE << endl;
     cout << gsw_info::H_SWAP << endl;
+    cout << gsw_info::H_REMOVE << endl;
     cout << endl;
 }
 
@@ -154,4 +172,14 @@ void swap(int number) {
     string swapEmail(SWAP_EMAIL_GIT_CMD + QUOTE + chosen.getEmail() + QUOTE);
     system(swapName.c_str());
     system(swapEmail.c_str());
+}
+
+void remove(int number) {
+    Store store;
+    if (number <= 0 || number > store.size()) {
+        cout << NONEXISTENT_INDEX_MESSAGE << endl;
+        cout << RUN_HELP_MESSAGE;
+        return;
+    }
+    store.remove(number - 1);
 }

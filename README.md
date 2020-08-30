@@ -60,6 +60,8 @@ Options:
                 --number <number> --name <name> --email <email>:        Update existing user profile
         -s, --switch
                 <number>:                                               Switch user profile
+        -r, --remove
+                <number>:                                               Remove user profile
 ```
 
 ### Make targets
