@@ -13,7 +13,7 @@ Global git config cannot keep a few usernames / emails, but sometimes it's neces
 
 ### Technologies
 
-Project is using `C++` language, `C++98` standard.
+Project is using `C++` language, `C++11` standard.
 
 ## System requirements
 
@@ -44,12 +44,28 @@ echo alias gsw="gsw.exe" >> $(USERPROFILE)\.bash_profile
 
 or open the file (or create it) in a text editor and add the line manually.
 
+## Downloads
+
+You could download precompiled binaries of prefered release.
+
 ## Usage
 
 ### App
 
 ```bash
-gsw
+Options:
+        -v, --version:                                                  Display installed version
+        -h, --help:                                                     Display help
+        -c, --current:                                                  Display current user email       
+        -l, --list:                                                     Display list of all user profiles
+        -a, --add
+                --name <name> --email <email>:                          Add new user profile
+        -u, --update
+                --number <number> --name <name> --email <email>:        Update existing user profile
+        -s, --switch
+                <number>:                                               Switch user profile
+        -r, --remove
+                <number>:                                               Remove user profile
 ```
 
 ### Make targets
@@ -69,6 +85,6 @@ gsw
 
 If you have any questions please don't hesitate to contact me almdragonsl@gmail.com
 
-## Copiryght
+## Copyright
 
 &copy; 2020 Ermolenko V.A.
